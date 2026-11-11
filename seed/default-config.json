@@ -1,0 +1,15 @@
+{
+  "globalEnabled": true,
+  "intervalMinutes": 15,
+  "quizMix": "mixed",
+  "mathLevel": 2,
+  "overlayTitle": "Take a brain break",
+  "overlaySubtitle": "Answer the following to continue",
+  "accentColor": "#4a5a9e",
+  "questionsPerBreak": 5,
+  "rules": [
+    { "pattern": "youtube.com", "enabled": true },
+    { "pattern": "youtu.be", "enabled": true },
+    { "pattern": "roblox.com", "enabled": true }
+  ]
+}

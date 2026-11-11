@@ -1,0 +1,16 @@
+# Focus Gate seed questions
+# Format: type | question | answer | choices (optional, comma or | separated)
+# type: math | mcq | text   (math can be auto-generated too, these are fixed)
+# Lines starting with # and blank lines are ignored.
+# Example: mcq | Red planet? | Mars | Mars,Jupiter,Venus
+
+math | 7 x 8 | 56 |
+math | 12 + 15 | 27 |
+math | 45 - 17 | 28 |
+math | 9 x 6 | 54 |
+text | Capital of France? | Paris |
+text | How many days are in a leap year? | 366 |
+mcq | Which planet is known as the Red Planet? | Mars | Mars,Jupiter,Venus,Saturn
+mcq | What is H2O commonly called? | Water | Water,Oxygen,Hydrogen,Helium
+mcq | Which animal is a mammal? | Dolphin | Shark,Dolphin,Octopus,Frog
+text | What force pulls objects toward Earth? | gravity |

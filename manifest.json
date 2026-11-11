@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Gate - Parental Quiz Guard",
+  "version": "0.1.0",
+  "description": "Domain-based parental controls: timed learn-to-continue quizzes with master-password override.",
+  "permissions": ["storage", "alarms", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/guard.js"],
+      "css": ["src/content/guard.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Focus Gate"
+  },
+  "options_page": "src/options/options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["seed/*", "assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

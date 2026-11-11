@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Focus Gate Settings</title><style>
+body{font-family:system-ui,sans-serif;max-width:860px;margin:24px auto;padding:0 16px}section{border:1px solid #ddd;border-radius:12px;padding:16px;margin:14px 0}label{display:block;margin:8px 0}input,select,textarea{padding:8px;border-radius:8px;border:1px solid #bbb}input[type=text],input[type=number],textarea{width:100%;box-sizing:border-box}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #eee;padding:6px;text-align:left}button{padding:8px 14px;border-radius:8px;border:1px solid #999;cursor:pointer;background:#f5f5f5}.err{color:#b00;font-size:13px}.row{display:flex;gap:8px;flex-wrap:wrap}
+</style></head>
+<body>
+<h1>Focus Gate — Settings</h1>
+<p>Everything is configurable here: master password, timing, URLs, and question bank. Question bank can be seeded from a <code>.txt</code> file (<code>type | question | answer | choices</code>).</p>
+
+<section><h2>1. Master password</h2>
+<div id="pwStatus"></div>
+<label>New password <input type="password" id="pw1"></label>
+<label>Repeat <input type="password" id="pw2"></label>
+<button id="pwSave">Set password</button> <span class="err" id="pwErr"></span></section>
+
+<section><h2>2. Timing &amp; quiz</h2>
+<label><input type="checkbox" id="globalEnabled"> Enabled globally</label>
+<label>Interrupt every (minutes, min 0.1) <input type="number" id="intervalMinutes" step="0.1" min="0.1"></label>
+<label>Question source <select id="quizMix"><option value="mixed">mixed (bank + generated math)</option><option value="math-only">math-only</option><option value="bank-only">bank-only (multiple-choice + text from your list)</option></select></label>
+<label>Math difficulty <select id="mathLevel"><option value="1">1 easy</option><option value="2">2 medium</option><option value="3">3 hard</option></select></label>
+<label>Questions per break (1-20) <input type="number" id="questionsPerBreak" step="1" min="1" max="20" value="5"></label>
+<button id="timeSave">Save timing</button></section>
+
+<section><h2>2b. Prompt appearance</h2>
+<label>Title <input type="text" id="overlayTitle" maxlength="80" placeholder="Take a brain break"></label>
+<label>Subtitle <input type="text" id="overlaySubtitle" maxlength="140" placeholder="Answer the following to continue"></label>
+<label>Prompt color <input type="color" id="accentColor" value="#4a5a9e"></label>
+<label>Mascot image (upload png/jpg, stored on this device) <input type="file" id="mascotFile" accept="image/*"></label>
+<div class="row"><img id="mascotPreview" style="width:160px;height:112px;object-fit:cover;border-radius:10px;border:1px solid #ccc" alt="mascot preview"><button id="mascotReset">Reset to default</button></div>
+<p class="muted">A random funny motivator shows every time (e.g. “Your brain asked for a snack. Math is the snack.”). Full list in <code>src/lib/motivation.js</code>.</p>
+<button id="appearanceSave">Save appearance</button></section>
+
+<section><h2>3. URLs / domains</h2>
+<p class="muted">Patterns: <code>youtube.com</code>, <code>*.youtube.com</code>, <code>*://*.example.com/*</code>. Unchecked = excluded.</p>
+<table><thead><tr><th>Pattern</th><th>Guard?</th><th></th></tr></thead><tbody id="rules"></tbody></table>
+<div class="row"><input type="text" id="newPattern" placeholder="e.g. youtube.com" style="flex:1"><button id="addRule">Add</button></div>
+<button id="rulesSave">Save URLs</button></section>
+
+<section><h2>4. Questions</h2>
+<div class="row"><button id="exportTxt">Export .txt</button><button id="resetSeed">Reset to seed file</button>
+<label>Import .txt <input type="file" id="importFile" accept=".txt,.csv"></label></div>
+<p>Paste seed text below (one per line: <code>type | question | answer | choices</code>), then Import.</p>
+<textarea id="bulk" rows="10"></textarea><br>
+<button id="bulkImport">Preview &amp; Save</button> <span class="err" id="bulkErr"></span>
+<table><thead><tr><th>Type</th><th>Question</th><th>Answer</th><th></th></tr></thead><tbody id="qlist"></tbody></table>
+<div class="row"><input type="text" id="qType" value="text" style="width:70px"><input type="text" id="qQ" placeholder="question" style="flex:2"><input type="text" id="qA" placeholder="answer" style="flex:1"><input type="text" id="qC" placeholder="choices comma-separated (mcq)" style="flex:2"><button id="qAdd">Add</button></div>
+</section>
+
+<script type="module" src="options.js"></script>
+</body></html>
